@@ -1,13 +1,13 @@
-﻿using Library.Models.Interfaces;
+﻿using Library.Models;
 
-namespace Library.Models
+namespace Library.ViewModels
 {
-    public class Book
+    public class AddBookViewModel
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string? Description { get; set; }
         public string[] Authors { get; set; }
-        public byte[]? ImageCover { get; set; }
+        //public byte[]? ImageCover { get; set; }
     }
 }

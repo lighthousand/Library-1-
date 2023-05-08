@@ -1,4 +1,6 @@
 using Library.Data;
+using Library.Models;
+using Library.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryConnectionString")));
+
+// Add model dependencies
+builder.Services.AddScoped<IBook, Book>();
 
 var app = builder.Build();
 
