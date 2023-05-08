@@ -1,9 +1,6 @@
-﻿using Library.Models;
-using Library.ViewModels.Interfaces;
-
-namespace Library.ViewModels
+﻿namespace Library.Models.Interfaces
 {
-    public class AddBookViewModel : IAddBookViewModel
+    public interface IModel
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

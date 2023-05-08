@@ -2,7 +2,7 @@
 
 namespace Library.Models
 {
-    public class Book
+    public class Book: IBook
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

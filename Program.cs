@@ -1,16 +1,17 @@
 using Library.Data;
+using Library.Factories;
 using Library.Models;
 using Library.Models.Interfaces;
+using Library.ViewModels;
+using Library.ViewModels.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryConnectionString")));
 
-// Add model dependencies
-builder.Services.AddScoped<IBook, Book>();
+ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
@@ -34,3 +35,14 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void ConfigureServices(IServiceCollection services)
+{
+    // Add the entity framework support
+    builder.Services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryConnectionString")));
+
+    // Add model dependencies
+    builder.Services.AddModelsAbstractFactory<IBook, Book>();
+    builder.Services.AddModelsAbstractFactory<IAddBookViewModel, AddBookViewModel>();
+    builder.Services.AddModelsAbstractFactory<IUpdateBookViewModel, UpdateBookViewModel>();
+}
