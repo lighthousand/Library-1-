@@ -1,4 +1,5 @@
 ﻿using Library.Models;
+using Library.Models.Errors;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
